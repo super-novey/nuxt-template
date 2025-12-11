@@ -1,11 +1,48 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import process from 'node:process'
+
+const isDev = process.env.NODE_ENV === 'development'
+
+const apiBaseUrl = 'https://movies-proxy.vercel.app'
+
 export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
     '@nuxtjs/color-mode',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@vueuse/nuxt',
+    '@nuxt/image'
   ],
   compatibilityDate: '2025-07-15',
+
+  experimental: {
+    // inlineSSRStyles: false,
+    viewTransition: true,
+    renderJsonPayloads: true,
+  },
+
+  routeRules: {
+    '/**': isDev ? {} : { cache: { swr: true, maxAge: 120, staleMaxAge: 60, headersOnly: true } },
+  },
+
+  runtimeConfig: {
+    public: {
+      apiBaseUrl,
+    },
+  },
+
+  image: {
+    provider: 'proxy',
+    providers: {
+      proxy: {
+        provider: 'ipx',
+        options: {
+          baseURL: `${apiBaseUrl}/ipx`,
+        },
+      },
+    },
+  },
+
+
   devtools: { enabled: true },
 
   colorMode: {
@@ -14,27 +51,80 @@ export default defineNuxtConfig({
     fallback: "light"
   },
 
-  i18n: {
-    // default locale
-    defaultLocale: 'en',
 
-    // available locales
+  i18n: {
+    detectBrowserLanguage: {
+      useCookie: true,
+      fallbackLocale: 'en',
+    },
+    strategy: 'no_prefix',
     locales: [
       {
         code: 'en',
+        name: 'English',
         file: 'en.json',
-        name: 'English'
+      },
+      {
+        code: 'fa-IR',
+        name: 'فارسی',
+        file: 'fa-IR.json',
+      },
+      {
+        code: 'de-DE',
+        name: 'Deutsch',
+        file: 'de-DE.json',
+      },
+      {
+        code: 'es-ES',
+        name: 'Español',
+        file: 'es-ES.json',
+      },
+      {
+        code: 'it',
+        name: 'Italiano',
+        file: 'it.json',
+      },
+      {
+        code: 'ja',
+        name: '日本語',
+        file: 'ja.json',
+      },
+      {
+        code: 'zh-CN',
+        name: '简体中文',
+        file: 'zh-CN.json',
+      },
+      {
+        code: 'pt-PT',
+        name: 'Português',
+        file: 'pt-PT.json',
+      },
+      {
+        code: 'pt-BR',
+        name: 'Português do Brasil',
+        file: 'pt-BR.json',
+      },
+      {
+        code: 'ru-RU',
+        name: 'Русский',
+        file: 'ru-RU.json',
+      },
+      {
+        code: 'fr-FR',
+        name: 'Français',
+        file: 'fr-FR.json',
+      },
+      {
+        code: 'uk-UA',
+        name: 'Українська',
+        file: 'uk-UA.json',
       },
       {
         code: 'vi',
+        name: 'Tiếng Việt',
         file: 'vi.json',
-        name: 'Tiếng Việt'
-      }
+      },
     ],
-
-
-    strategy: 'prefix_except_default',
-
-    vueI18n: './i18n.config.ts'
-  }
+    defaultLocale: 'en',
+  },
 })

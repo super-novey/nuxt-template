@@ -10,15 +10,23 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/image": "2.0.0",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.2.1",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
     "nuxt": "^4.2.1",
     "vue": "^3.5.25",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.3",
+    "vue-router-better-scroller": "^0.0.0"
   },
   "packageManager": "pnpm@10.24.0+sha512.01ff8ae71b4419903b65c60fb2dc9d34cf8bb6e06d03bde112ef38f7a34d6904c424ba66bea5cdcf12890230bf39f9580473140ed9c946fef328b6e5238a345a",
   "devDependencies": {
+    "@iconify-json/carbon": "^1.2.15",
+    "@iconify-json/ph": "^1.2.2",
     "@unocss/nuxt": "^66.5.10",
+    "lru-cache": "^11.2.4",
+    "ohash": "^2.0.11",
     "unocss": "^66.5.10"
   }
 }
