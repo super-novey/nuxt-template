@@ -24,6 +24,7 @@
   "devDependencies": {
     "@iconify-json/carbon": "^1.2.15",
     "@iconify-json/ph": "^1.2.2",
+    "@nuxt/fonts": "^0.12.1",
     "@unocss/nuxt": "^66.5.10",
     "lru-cache": "^11.2.4",
     "ohash": "^2.0.11",

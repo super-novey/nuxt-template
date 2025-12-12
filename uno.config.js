@@ -24,6 +24,11 @@ export default defineConfig({
     theme: {
         colors: {
             primary: '#40c1ad',
+            'active-red': '#FD312E',
+            'heritage-red': '#A50034',
+            'warm-grey': '#F0ECE4',
+            white: '#FFFFFF',
+            black: '#000000',
         },
         fontFamily: {
             sans: ['LGEI Text', 'sans-serif'],
