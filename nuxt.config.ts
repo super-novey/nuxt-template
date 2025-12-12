@@ -1,12 +1,17 @@
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 
 const isDev = process.env.NODE_ENV === 'development'
 
 const apiBaseUrl = 'https://movies-proxy.vercel.app'
 
+const rootDir = fileURLToPath(new URL('.', import.meta.url))
+
 export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
+    '@nuxt/fonts',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
@@ -49,6 +54,32 @@ export default defineNuxtConfig({
     classSuffix: "",       // makes html have class="dark" instead of dark-mode
     preference: "system",  // default = system theme
     fallback: "light"
+  },
+
+  fonts: {
+    families: [
+      {
+        name: 'LGEI Text',
+        provider: 'local',
+        src: [
+          { path: resolve(rootDir, 'app/assets/fonts/LGEITextTTF-Light.ttf'), weight: '300' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEITextTTF-Regular.ttf'), weight: '400' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEITextTTF-SemiBold.ttf'), weight: '600' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEITextTTF-Bold.ttf'), weight: '700' },
+        ],
+      },
+      {
+        name: 'LGEI Headline',
+        provider: 'local',
+        src: [
+          { path: resolve(rootDir, 'app/assets/fonts/LGEIHeadlineTTF-Thin.ttf'), weight: '100' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEIHeadlineTTF-Light.ttf'), weight: '300' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEIHeadlineTTF-Regular.ttf'), weight: '400' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEIHeadlineTTF-Semibold.ttf'), weight: '600' },
+          { path: resolve(rootDir, 'app/assets/fonts/LGEIHeadlineTTF-Bold.ttf'), weight: '700' },
+        ],
+      },
+    ],
   },
 
 
